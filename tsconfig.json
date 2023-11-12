@@ -9,6 +9,11 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "paths": {
+      "ltfx-helper": [
+        "dist/ltfx-helper"
+      ]
+    },
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
