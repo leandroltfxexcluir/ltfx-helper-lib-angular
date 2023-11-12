@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
-import { LtfxHelperComponent } from './ltfx-helper.component';
 
-
+import { LtfxHelperService } from './ltfx-helper.service';
 
 @NgModule({
-  declarations: [
-    LtfxHelperComponent
-  ],
-  imports: [
-  ],
-  exports: [
-    LtfxHelperComponent
+  providers: [
+    LtfxHelperService
   ]
 })
 export class LtfxHelperModule { }
