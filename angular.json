@@ -3,5 +3,133 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ltfx-helper": {
+      "projectType": "library",
+      "root": "projects/ltfx-helper",
+      "sourceRoot": "projects/ltfx-helper/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ltfx-helper/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ltfx-helper/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ltfx-helper/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ltfx-helper/src/test.ts",
+            "tsConfig": "projects/ltfx-helper/tsconfig.spec.json",
+            "karmaConfig": "projects/ltfx-helper/karma.conf.js"
+          }
+        }
+      }
+    },
+    "ltfx-helper-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ltfx-helper-app",
+      "sourceRoot": "projects/ltfx-helper-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ltfx-helper-app",
+            "index": "projects/ltfx-helper-app/src/index.html",
+            "main": "projects/ltfx-helper-app/src/main.ts",
+            "polyfills": "projects/ltfx-helper-app/src/polyfills.ts",
+            "tsConfig": "projects/ltfx-helper-app/tsconfig.app.json",
+            "assets": [
+              "projects/ltfx-helper-app/src/favicon.ico",
+              "projects/ltfx-helper-app/src/assets"
+            ],
+            "styles": [
+              "projects/ltfx-helper-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/ltfx-helper-app/src/environments/environment.ts",
+                  "with": "projects/ltfx-helper-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ltfx-helper-app:build:production"
+            },
+            "development": {
+              "browserTarget": "ltfx-helper-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ltfx-helper-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ltfx-helper-app/src/test.ts",
+            "polyfills": "projects/ltfx-helper-app/src/polyfills.ts",
+            "tsConfig": "projects/ltfx-helper-app/tsconfig.spec.json",
+            "karmaConfig": "projects/ltfx-helper-app/karma.conf.js",
+            "assets": [
+              "projects/ltfx-helper-app/src/favicon.ico",
+              "projects/ltfx-helper-app/src/assets"
+            ],
+            "styles": [
+              "projects/ltfx-helper-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "ae24dcc4-450e-4515-ba23-5b5cdea7b5e8"
   }
 }
